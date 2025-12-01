@@ -1,6 +1,7 @@
 from salesRegressor.constants import *
 from salesRegressor.utils.common import read_yaml, create_directories
-from salesRegressor.entity.config_entity import DataIngestionConfig, DataValidationConfig
+from salesRegressor.entity.config_entity import (DataIngestionConfig, DataValidationConfig,
+                                                 DataTransformationConfig)
 
 
 class ConfigurationManager:
@@ -39,3 +40,21 @@ class ConfigurationManager:
             ALL_REQUIRED_FILES=config.ALL_REQUIRED_FILES,
         )
         return data_validation_config
+    
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        
+        dt = self.config.data_transformation
+        
+        create_directories([dt.root_dir])
+        
+        data_transformation_config = DataTransformationConfig(
+            root_dir=Path(dt.root_dir),
+            sales_file=Path(dt.sales_file),
+            store_file=Path(dt.store_file),
+            cleaned_data_file=Path(dt.cleaned_data_file),
+            train_file=Path(dt.train_file),
+            test_file=Path(dt.test_file),
+            test_size=float(dt.test_size)
+            )
+        
+        return data_transformation_config

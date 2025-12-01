@@ -24,3 +24,16 @@ class DataTransformationConfig:
     train_file: Path
     test_file: Path
     test_size: float
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    root_dir: Path
+    train_file: Path
+    test_file: Path
+    model_file: Path
+    iterations: int
+    learning_rate: float
+    depth: int
+    loss_function: str
+    early_stopping_rounds: int
+    verbose: int

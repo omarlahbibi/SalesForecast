@@ -1,1 +1,7 @@
-key: value
+CatBoostParams:
+  iterations: 1000
+  learning_rate: 0.05
+  depth: 6
+  loss_function: RMSE
+  early_stopping_rounds: 100
+  verbose: 100

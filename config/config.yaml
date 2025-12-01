@@ -19,3 +19,9 @@ data_transformation:
   train_file: artifacts/data_transformation/train.csv
   test_file: artifacts/data_transformation/test.csv
   test_size: 0.2
+
+model_trainer:
+  root_dir: artifacts/model_trainer
+  train_file: artifacts/data_transformation/train.csv
+  test_file: artifacts/data_transformation/test.csv
+  model_file: artifacts/model_trainer/catboost_model.cbm

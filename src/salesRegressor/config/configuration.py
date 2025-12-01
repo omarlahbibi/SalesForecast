@@ -1,7 +1,7 @@
 from salesRegressor.constants import *
 from salesRegressor.utils.common import read_yaml, create_directories
 from salesRegressor.entity.config_entity import (DataIngestionConfig, DataValidationConfig,
-                                                 DataTransformationConfig)
+                                                 DataTransformationConfig, ModelTrainerConfig)
 
 
 class ConfigurationManager:
@@ -58,3 +58,24 @@ class ConfigurationManager:
             )
         
         return data_transformation_config
+    
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+        params = self.params.CatBoostParams
+
+        create_directories([config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=config.root_dir,
+            train_file=config.train_file,
+            test_file=config.test_file,
+            model_file=config.model_file,
+            iterations=params.iterations,
+            learning_rate=params.learning_rate,
+            depth=params.depth,
+            loss_function=params.loss_function,
+            early_stopping_rounds=params.early_stopping_rounds,
+            verbose=params.verbose
+            )
+        
+        return model_trainer_config

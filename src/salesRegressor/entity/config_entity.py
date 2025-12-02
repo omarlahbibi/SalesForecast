@@ -37,3 +37,10 @@ class ModelTrainerConfig:
     loss_function: str
     early_stopping_rounds: int
     verbose: int
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    root_dir: Path
+    model_path: Path
+    test_data_path: Path
+    metrics_file: Path
